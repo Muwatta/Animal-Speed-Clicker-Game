@@ -287,29 +287,33 @@ footer .p-developer {
   margin-top: 15px;
   color: #009f45;
 }
-/* Media Queries for Mobile */
-@media (max-width: 480px) {
+@media (min-width: 481px) and (max-width: 768px) {
   #mainNav ul li a {
     font-size: 1rem;
   }
+  #startScreen,
+  .AnimalSpeedClickerGame {
+    max-width: 500px;
+    padding: 1.5rem;
+  }
   #startScreen h2,
   .AnimalSpeedClickerGame header h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   #startScreen input,
   #startScreen button,
   .controlButtons button,
   #animalBtns button {
-    font-size: 0.9rem;
-    padding: 0.7rem;
+    font-size: 0.95rem;
+    padding: 0.75rem;
   }
   .display h4 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   #showRandomAnimal {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
   #feedback {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
