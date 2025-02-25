@@ -1,6 +1,6 @@
 let score = 0;
 let gameTime = 60; // 60 seconds total
-let currentAnimal = '';
+let currentAnimal = null;
 let roundActive = false;
 let countdownInterval;
 let feedbackTimeout;
@@ -14,8 +14,19 @@ const feedback = document.getElementById('feedback');
 const playerGreeting = document.getElementById('playerGreeting');
 const generateButton = document.getElementById('generateButton');
 
-// List of animals
-const animals = ['lion', 'tiger', 'elephant', 'giraffe', 'Dinosaur'];
+// Define 10 animals with name and emoji
+const animals = [
+  { name: 'lion', emoji: '🦁' },
+  { name: 'tiger', emoji: '🐯' },
+  { name: 'elephant', emoji: '🐘' },
+  { name: 'giraffe', emoji: '🦒' },
+  { name: 'dinosaur', emoji: '🦖' },
+  { name: 'monkey', emoji: '🐒' },
+  { name: 'zebra', emoji: '🦓' },
+  { name: 'penguin', emoji: '🐧' },
+  { name: 'koala', emoji: '🐨' },
+  { name: 'dog', emoji: '🐶' },
+];
 
 // Start the game (triggered via onclick on the Start Game button)
 function startGame() {
@@ -33,18 +44,16 @@ function startGame() {
   gameSection.style.opacity = '0.5';
   gameSection.style.pointerEvents = 'none';
 
-  // Show the loading overlay inside the game section with an attractive spinner
+  // Show the loading overlay inside the game section
   const loadingOverlay = document.getElementById('loadingOverlay');
   loadingOverlay.style.display = 'flex';
 
   // Animate loading for 3 seconds
   setTimeout(() => {
-    // Remove the loading overlay and enable the game section
     loadingOverlay.style.display = 'none';
     gameSection.style.opacity = '1';
     gameSection.style.pointerEvents = 'auto';
 
-    // Greet the player and start the countdown
     playerGreeting.textContent = `Good luck, ${playerName}!`;
     updateScoreDisplay();
     updateTimerDisplay();
@@ -73,12 +82,12 @@ function updateTimerDisplay() {
 
 // Start a new round when the user clicks the Generate Animal button
 function startRound() {
-  if (gameTime <= 0) return;
-  if (roundActive) return;
+  if (gameTime <= 0 || roundActive) return;
 
   const randomIndex = Math.floor(Math.random() * animals.length);
   currentAnimal = animals[randomIndex];
-  showRandomAnimal.textContent = `🫎Random Animal: ${currentAnimal}`;
+  // Display the animal image (emoji) instead of its name
+  showRandomAnimal.innerHTML = `🫎Random Animal: <span class="animalEmoji">${currentAnimal.emoji}</span>`;
   feedback.textContent = 'Choose the correct animal:';
   roundActive = true;
 
@@ -94,13 +103,13 @@ function enableAnimalButtons(enable) {
   });
 }
 
-// When an animal button is clicked, check the answer
-function checkAnswer(selectedAnimal) {
+// Check the player's answer based on animal name
+function checkAnswer(selectedAnimalName) {
   if (!roundActive) return;
   enableAnimalButtons(false);
   roundActive = false;
 
-  if (selectedAnimal.toLowerCase() === currentAnimal.toLowerCase()) {
+  if (selectedAnimalName.toLowerCase() === currentAnimal.name.toLowerCase()) {
     feedback.textContent = 'Correct! ✅';
     score++;
   } else {
@@ -133,7 +142,22 @@ function Giraffe() {
   checkAnswer('giraffe');
 }
 function Dinosaur() {
-  checkAnswer('Dinosaur');
+  checkAnswer('dinosaur');
+}
+function Monkey() {
+  checkAnswer('monkey');
+}
+function Zebra() {
+  checkAnswer('zebra');
+}
+function Penguin() {
+  checkAnswer('penguin');
+}
+function Koala() {
+  checkAnswer('koala');
+}
+function Dog() {
+  checkAnswer('dog');
 }
 
 function endGame() {
@@ -142,7 +166,7 @@ function endGame() {
   enableAnimalButtons(false);
   clearInterval(countdownInterval);
 
-  // If the player's score is 6/10 or better, celebrate by making the animal buttons dance
+  // If player's score is winning (e.g. >=6), celebrate with a dance animation
   if (score >= 6) {
     celebrateVictory();
   } else {
@@ -158,7 +182,7 @@ function celebrateVictory() {
   animalButtons.forEach(button => {
     button.classList.add('dance');
   });
-  // Let the dance go on for 10 seconds before ending the game
+  // Let the dance continue for 10 seconds, then end the game
   setTimeout(() => {
     animalButtons.forEach(button => {
       button.classList.remove('dance');
@@ -167,6 +191,64 @@ function celebrateVictory() {
     showRandomAnimal.textContent = 'Game Over!';
     saveRecord(playerName, score);
   }, 10000);
+}
+
+// Reset the game without reloading the page
+function resetGame() {
+  // Clear any running timers
+  clearInterval(countdownInterval);
+  clearTimeout(feedbackTimeout);
+
+  // Reset game state variables
+  score = 0;
+  gameTime = 60;
+  currentAnimal = null;
+  roundActive = false;
+
+  // Reset UI elements
+  updateScoreDisplay();
+  updateTimerDisplay();
+  feedback.textContent = '';
+  showRandomAnimal.textContent = '🫎Random Animal: ';
+  generateButton.disabled = false;
+  enableAnimalButtons(false);
+
+  // Restart countdown
+  startCountdown();
+}
+
+// Show the leaderboard overlay (top 5 highest scores)
+function showLeaderboard() {
+  const leaderboardOverlay = document.getElementById('leaderboardOverlay');
+  const leaderboardList = document.getElementById('leaderboardList');
+
+  // Retrieve records from localStorage
+  let records = JSON.parse(localStorage.getItem('gameRecords')) || [];
+  // Sort records descending by score
+  records.sort((a, b) => b.score - a.score);
+  // Take top 5 records
+  records = records.slice(0, 5);
+
+  // Clear previous leaderboard list
+  leaderboardList.innerHTML = '';
+
+  if (records.length === 0) {
+    leaderboardList.innerHTML = '<li>No records yet.</li>';
+  } else {
+    records.forEach((record, index) => {
+      const li = document.createElement('li');
+      li.textContent = `${index + 1}. ${record.name} - ${record.score} (${
+        record.date
+      })`;
+      leaderboardList.appendChild(li);
+    });
+  }
+
+  leaderboardOverlay.style.display = 'flex';
+}
+
+function closeLeaderboard() {
+  document.getElementById('leaderboardOverlay').style.display = 'none';
 }
 
 function saveRecord(name, score) {
