@@ -12,7 +12,6 @@ const displayTimer = document.getElementById('displayTimer');
 const showRandomAnimal = document.getElementById('showRandomAnimal');
 const feedback = document.getElementById('feedback');
 const playerGreeting = document.getElementById('playerGreeting');
-const generateButton = document.getElementById('generateButton');
 
 // Define 10 animals with name and emoji
 const animals = [
@@ -58,6 +57,8 @@ function startGame() {
     updateScoreDisplay();
     updateTimerDisplay();
     startCountdown();
+    // Automatically start the first round
+    startRound();
   }, 3000);
 }
 
@@ -80,7 +81,7 @@ function updateTimerDisplay() {
   displayTimer.textContent = `⏲️Timer: ${gameTime}s`;
 }
 
-// Start a new round when the user clicks the Generate Animal button
+// Start a new round automatically
 function startRound() {
   if (gameTime <= 0 || roundActive) return;
 
@@ -91,9 +92,8 @@ function startRound() {
   feedback.textContent = 'Choose the correct animal:';
   roundActive = true;
 
-  // Enable answer buttons and disable Generate button until round ends
+  // Enable answer buttons
   enableAnimalButtons(true);
-  generateButton.disabled = true;
 }
 
 function enableAnimalButtons(enable) {
@@ -118,12 +118,12 @@ function checkAnswer(selectedAnimalName) {
   }
   updateScoreDisplay();
 
-  // Keep feedback visible for 2 seconds before clearing and re-enabling Generate button
+  // Keep feedback visible for 2 seconds then automatically start the next round
   feedbackTimeout = setTimeout(() => {
     feedback.textContent = '';
     showRandomAnimal.textContent = '🫎Random Animal: ';
     if (gameTime > 0) {
-      generateButton.disabled = false;
+      startRound();
     }
   }, 2000);
 }
@@ -162,11 +162,10 @@ function Dog() {
 
 function endGame() {
   clearTimeout(feedbackTimeout);
-  generateButton.disabled = true;
   enableAnimalButtons(false);
   clearInterval(countdownInterval);
 
-  // If player's score is winning (e.g. >=6), celebrate with a dance animation
+  // If player's score is winning (e.g., >=6), celebrate with a dance animation
   if (score >= 6) {
     celebrateVictory();
   } else {
@@ -195,26 +194,22 @@ function celebrateVictory() {
 
 // Reset the game without reloading the page
 function resetGame() {
-  // Clear any running timers
   clearInterval(countdownInterval);
   clearTimeout(feedbackTimeout);
 
-  // Reset game state variables
   score = 0;
   gameTime = 60;
   currentAnimal = null;
   roundActive = false;
 
-  // Reset UI elements
   updateScoreDisplay();
   updateTimerDisplay();
   feedback.textContent = '';
   showRandomAnimal.textContent = '🫎Random Animal: ';
-  generateButton.disabled = false;
-  enableAnimalButtons(false);
 
-  // Restart countdown
+  // Restart countdown and start the first round automatically
   startCountdown();
+  startRound();
 }
 
 // Show the leaderboard overlay (top 5 highest scores)
@@ -222,14 +217,10 @@ function showLeaderboard() {
   const leaderboardOverlay = document.getElementById('leaderboardOverlay');
   const leaderboardList = document.getElementById('leaderboardList');
 
-  // Retrieve records from localStorage
   let records = JSON.parse(localStorage.getItem('gameRecords')) || [];
-  // Sort records descending by score
   records.sort((a, b) => b.score - a.score);
-  // Take top 5 records
   records = records.slice(0, 5);
 
-  // Clear previous leaderboard list
   leaderboardList.innerHTML = '';
 
   if (records.length === 0) {
@@ -249,6 +240,33 @@ function showLeaderboard() {
 
 function closeLeaderboard() {
   document.getElementById('leaderboardOverlay').style.display = 'none';
+}
+
+// GUIDE OVERLAY FUNCTIONS
+function showGuide() {
+  document.getElementById('guideOverlay').style.display = 'flex';
+}
+
+function closeGuide() {
+  document.getElementById('guideOverlay').style.display = 'none';
+}
+
+// ABOUT OVERLAY FUNCTIONS
+function showAbout() {
+  document.getElementById('aboutOverlay').style.display = 'flex';
+}
+
+function closeAbout() {
+  document.getElementById('aboutOverlay').style.display = 'none';
+}
+
+// HOME NAV: Closes all overlays and shows the start screen if needed.
+function goHome() {
+  // Close any open overlay
+  closeGuide();
+  closeAbout();
+  closeLeaderboard();
+  // Optionally, you might scroll to top or refresh the view.
 }
 
 function saveRecord(name, score) {

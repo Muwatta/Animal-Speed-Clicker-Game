@@ -9,6 +9,16 @@
 </head>
 
 <body>
+  <!-- Navigation Bar -->
+  <nav id="mainNav">
+    <ul>
+      <li><a href="#" onclick="goHome()">Home</a></li>
+      <li><a href="#" onclick="showGuide()">Guide</a></li>
+      <li><a href="#" onclick="showAbout()">About</a></li>
+      <li><a href="#" onclick="showLeaderboard()">Leaderboard</a></li>
+    </ul>
+  </nav>
+
   <!-- Start Screen -->
   <div id="startScreen">
     <h2>Welcome to Animal Speed Clicker Game!</h2>
@@ -27,7 +37,6 @@
       <h4 id="displayTimer">⏲️Timer: 60s</h4>
     </div>
     <h4 id="showRandomAnimal">🫎Random Animal: </h4>
-    <button id="generateButton" onclick="startRound()">Generate Animal</button>
     <div id="animalBtns">
       <button id="lionBtn" onclick="Lion()">🦁</button>
       <button id="tigerBtn" onclick="Tiger()">🐯</button>
@@ -54,11 +63,53 @@
   </section>
 
   <!-- Leaderboard Overlay -->
-  <div id="leaderboardOverlay" style="display: none;">
+  <div id="leaderboardOverlay" class="overlay" style="display: none;">
     <div id="leaderboardContent">
       <h2>Leaderboard</h2>
       <ul id="leaderboardList"></ul>
       <button onclick="closeLeaderboard()">Close</button>
+    </div>
+  </div>
+
+  <!-- Guide Overlay -->
+  <div id="guideOverlay" class="overlay" style="display: none;">
+    <div id="guideContent">
+      <h2>Game Guide</h2>
+      <p>
+        <strong>Overview:</strong> This is a 60‑second game where a random animal (displayed as an emoji) is generated
+        automatically.
+        You must click the corresponding animal button that matches the generated animal.
+      </p>
+      <p>
+        <strong>How to Play:</strong>
+        <br>1. Enter your name and click "Start Game". A loading screen will appear before the game begins.
+        <br>2. Once the game starts, the first random animal is generated automatically.
+        <br>3. Click the animal button that matches the displayed animal.
+        <br>4. After you answer, feedback is shown for 2 seconds before the next animal is generated.
+        <br>5. If you score 6 or higher, the animal buttons will dance for 10 seconds as a celebration!
+      </p>
+      <p>
+        <strong>Additional Features:</strong>
+        <br>- Reset Game: Restart the game without reloading the page.
+        <br>- Leaderboard: View the top 5 highest scores saved locally.
+      </p>
+      <button onclick="closeGuide()">Close</button>
+    </div>
+  </div>
+
+  <!-- About Overlay -->
+  <div id="aboutOverlay" class="overlay" style="display: none;">
+    <div id="aboutContent">
+      <h2>About This Game</h2>
+      <p>
+        Animal Speed Clicker Game is an interactive web game built using HTML, CSS, and JavaScript.
+        Enjoy a deep green themed, responsive experience with automatic animal generation, dynamic feedback, and a fun
+        victory celebration!
+      </p>
+      <p>
+        This project was created as a fun way to practice frontend development skills.
+      </p>
+      <button onclick="closeAbout()">Close</button>
     </div>
   </div>
 

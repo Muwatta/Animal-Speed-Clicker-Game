@@ -1,18 +1,46 @@
+/* Basic Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body */
 body {
   background: #013220; /* Deep green */
   color: #fff;
   font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   padding: 10px;
+}
+
+/* Navigation Bar */
+#mainNav {
+  width: 100%;
+  background: #024731;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+#mainNav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#mainNav ul li {
+  margin: 0 15px;
+}
+#mainNav ul li a {
+  color: #c2f0c2;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+#mainNav ul li a:hover {
+  color: #fff;
 }
 
 /* Start Screen Styling */
@@ -81,19 +109,6 @@ body {
 #showRandomAnimal {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-}
-#generateButton {
-  padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
-  background: #c2f0c2;
-  border: none;
-  border-radius: 5px;
-  color: #013220;
-  cursor: pointer;
-  width: 100%;
-  max-width: 250px;
-  margin-left: auto;
-  margin-right: auto;
 }
 #animalBtns {
   display: flex;
@@ -197,8 +212,8 @@ body {
   animation: dance 0.5s ease-in-out infinite;
 }
 
-/* Leaderboard Overlay Styling */
-#leaderboardOverlay {
+/* Overlay Styling for Guide, About, and Leaderboard */
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -210,7 +225,7 @@ body {
   align-items: center;
   z-index: 20;
 }
-#leaderboardContent {
+.overlay > div {
   background: #024731;
   padding: 20px;
   border-radius: 10px;
@@ -218,11 +233,35 @@ body {
   max-width: 400px;
   width: 90%;
 }
-#leaderboardContent h2 {
+.overlay h2 {
   margin-bottom: 10px;
   font-size: 1.8rem;
   color: #c2f0c2;
 }
+.overlay p {
+  margin-bottom: 10px;
+  text-align: left;
+  color: #c2f0c2;
+}
+.overlay button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background: #c2f0c2;
+  color: #013220;
+  cursor: pointer;
+  width: 100%;
+  max-width: 150px;
+}
+
+/* Specific IDs for Overlays */
+#leaderboardOverlay,
+#guideOverlay,
+#aboutOverlay {
+  display: none;
+}
+
+/* Leaderboard List Styling */
 #leaderboardList {
   list-style: none;
   padding: 0;
@@ -237,15 +276,17 @@ body {
 
 /* Media Queries for Mobile */
 @media (max-width: 480px) {
+  #mainNav ul li a {
+    font-size: 1rem;
+  }
   #startScreen h2,
   .AnimalSpeedClickerGame header h2 {
     font-size: 1.5rem;
   }
   #startScreen input,
   #startScreen button,
-  #generateButton,
-  #animalBtns button,
-  .controlButtons button {
+  .controlButtons button,
+  #animalBtns button {
     font-size: 0.9rem;
     padding: 0.7rem;
   }
