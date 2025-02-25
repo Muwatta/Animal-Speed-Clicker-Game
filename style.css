@@ -1,11 +1,9 @@
-/* Basic Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body */
 body {
   background: #013220; /* Deep green */
   color: #fff;
@@ -17,7 +15,6 @@ body {
   padding: 10px;
 }
 
-/* Navigation Bar */
 #mainNav {
   width: 100%;
   background: #024731;
@@ -42,8 +39,10 @@ body {
 #mainNav ul li a:hover {
   color: #fff;
 }
+#mainNav {
+  text-align: center;
+}
 
-/* Start Screen Styling */
 #startScreen {
   background: #024731;
   padding: 2rem;
@@ -51,6 +50,10 @@ body {
   text-align: center;
   width: 100%;
   max-width: 400px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 #startScreen h2 {
   margin-bottom: 1.5rem;
@@ -76,7 +79,6 @@ body {
   width: 100%;
 }
 
-/* Game Section Styling */
 .AnimalSpeedClickerGame {
   width: 100%;
   max-width: 600px;
@@ -93,7 +95,7 @@ body {
 }
 #playerGreeting {
   font-size: 1.2rem;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   color: #c2f0c2;
 }
 .display {
@@ -147,7 +149,6 @@ body {
   flex: 1;
 }
 
-/* Feedback Styling */
 #feedback {
   font-size: 1.2rem;
   background: rgba(0, 0, 0, 0.3);
@@ -156,7 +157,6 @@ body {
   color: #c2f0c2;
 }
 
-/* Loading Overlay Styling */
 #loadingOverlay {
   position: absolute;
   top: 0;
@@ -254,14 +254,12 @@ body {
   max-width: 150px;
 }
 
-/* Specific IDs for Overlays */
 #leaderboardOverlay,
 #guideOverlay,
 #aboutOverlay {
   display: none;
 }
 
-/* Leaderboard List Styling */
 #leaderboardList {
   list-style: none;
   padding: 0;
@@ -273,7 +271,22 @@ body {
   padding: 5px 0;
   border-bottom: 1px solid #c2f0c2;
 }
-
+footer {
+  position: relative;
+  background-color: #024731;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  color: #c2f0c2;
+  font-size: 0.9rem;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+footer .p-developer {
+  margin-top: 15px;
+  color: #009f45;
+}
 /* Media Queries for Mobile */
 @media (max-width: 480px) {
   #mainNav ul li a {

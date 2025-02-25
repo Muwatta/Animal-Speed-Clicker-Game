@@ -9,17 +9,19 @@
 </head>
 
 <body>
-  <!-- Navigation Bar -->
   <nav id="mainNav">
     <ul>
-      <li><a href="#" onclick="goHome()">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="#" onclick="showGuide()">Guide</a></li>
       <li><a href="#" onclick="showAbout()">About</a></li>
       <li><a href="#" onclick="showLeaderboard()">Leaderboard</a></li>
     </ul>
   </nav>
 
-  <!-- Start Screen -->
+  <nav id="mainNav">
+    <h3>Algorise Tech Explorers</h3>
+  </nav>
+
   <div id="startScreen">
     <h2>Welcome to Animal Speed Clicker Game!</h2>
     <input type="text" id="playerName" placeholder="Enter your name" required>
@@ -55,14 +57,12 @@
     </div>
     <h4 id="feedback">Feedback:</h4>
 
-    <!-- Loading Overlay inside Game Section -->
     <div id="loadingOverlay">
       <div class="spinner"></div>
       <h2>Loading...</h2>
     </div>
   </section>
 
-  <!-- Leaderboard Overlay -->
   <div id="leaderboardOverlay" class="overlay" style="display: none;">
     <div id="leaderboardContent">
       <h2>Leaderboard</h2>
@@ -71,7 +71,6 @@
     </div>
   </div>
 
-  <!-- Guide Overlay -->
   <div id="guideOverlay" class="overlay" style="display: none;">
     <div id="guideContent">
       <h2>Game Guide</h2>
@@ -97,7 +96,6 @@
     </div>
   </div>
 
-  <!-- About Overlay -->
   <div id="aboutOverlay" class="overlay" style="display: none;">
     <div id="aboutContent">
       <h2>About This Game</h2>
@@ -113,6 +111,11 @@
     </div>
   </div>
 
+  <audio id="bgSound" src="music/antaNuruLlahiFajran.mp3" loop></audio>
+  <footer>
+    <p>&copy; 2025 Animal Speed Clicker Game. &nbsp;All rights reserved.</p>
+    <p class="p-developer">Developed by AlgoriseTechExplorers@gmail.com</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 
