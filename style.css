@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #013220; /* Deep green */
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+/* Start Screen Styling */
+#startScreen {
+  background: #024731;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+#startScreen h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #c2f0c2;
+}
+#startScreen input {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+#startScreen button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #c2f0c2;
+  color: #013220;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Game Section Styling */
+.AnimalSpeedClickerGame {
+  width: 100%;
+  max-width: 600px;
+  background: #024731;
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  transition: opacity 0.5s ease;
+}
+.AnimalSpeedClickerGame header h2 {
+  color: #c2f0c2;
+  font-size: 1.8rem;
+}
+#playerGreeting {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #c2f0c2;
+}
+.display {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+.display h4 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+#showRandomAnimal {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+#generateButton {
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  background: #c2f0c2;
+  border: none;
+  border-radius: 5px;
+  color: #013220;
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#animalBtns {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+#animalBtns button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background: #c2f0c2;
+  color: #013220;
+  cursor: pointer;
+  flex: 1 1 30%;
+  min-width: 80px;
+}
+#animalBtns button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#feedback {
+  font-size: 1.2rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: #c2f0c2;
+}
+
+/* Loading Overlay Styling */
+#loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 16, 0.8);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #c2f0c2;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dance Animation */
+@keyframes dance {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+.dance {
+  animation: dance 0.5s ease-in-out infinite;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 480px) {
+  #startScreen h2,
+  .AnimalSpeedClickerGame header h2 {
+    font-size: 1.5rem;
+  }
+  #startScreen input,
+  #startScreen button,
+  #generateButton,
+  #animalBtns button {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+  .display h4 {
+    font-size: 0.9rem;
+  }
+  #showRandomAnimal {
+    font-size: 1.3rem;
+  }
+  #feedback {
+    font-size: 1rem;
+  }
+}

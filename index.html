@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Speed Clicker Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Start Screen -->
+  <div id="startScreen">
+    <h2>Welcome to Animal Speed Clicker Game!</h2>
+    <input type="text" id="playerName" placeholder="Enter your name" required>
+    <button id="startButton" onclick="startGame()">Start Game</button>
+  </div>
+
+  <!-- Game Section -->
+  <section id="gameSection" class="AnimalSpeedClickerGame" style="display: none; position: relative;">
+    <header>
+      <h2>🎮Animal Speed Clicker Game🕹️</h2>
+      <h3 id="playerGreeting"></h3>
+    </header>
+    <div class="display">
+      <h4 id="displayScore">🥅Score: 0</h4>
+      <h4 id="displayTimer">⏲️Timer: 60s</h4>
+    </div>
+    <h4 id="showRandomAnimal">🫎Random Animal: </h4>
+    <button id="generateButton" onclick="startRound()">Generate Animal</button>
+    <div id="animalBtns">
+      <button id="lionBtn" onclick="Lion()">Lion🦁</button>
+      <button id="tigerBtn" onclick="Tiger()">Tiger🐯</button>
+      <button id="elephantBtn" onclick="Elephant()">Elephant🐘</button>
+      <button id="giraffeBtn" onclick="Giraffe()">Giraffe🦒</button>
+      <button id="dinosaurBtn" onclick="Dinosaur()">Dinosaur🦖</button>
+    </div>
+    <h4 id="feedback">Feedback:</h4>
+
+    <!-- Loading Overlay inside Game Section -->
+    <div id="loadingOverlay">
+      <div class="spinner"></div>
+      <h2>Loading...</h2>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
