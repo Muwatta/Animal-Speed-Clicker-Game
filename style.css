@@ -21,6 +21,7 @@ body {
   background: #024731;
   padding: 5px 0;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 #mainNav ul {
   list-style: none;
@@ -31,7 +32,7 @@ body {
   margin: 0;
 }
 #mainNav ul li {
-  margin: 0 3px;
+  margin: 20px 13px;
 }
 #mainNav ul li a {
   color: #c2f0c2;
@@ -50,6 +51,7 @@ body {
   color: #c2f0c2;
   text-align: center;
   padding: 20px;
+  border-radius: 5px;
 }
 
 /* Start Screen */
@@ -81,6 +83,7 @@ body {
   border: none;
   width: 100%;
   margin-bottom: 1.5rem;
+  min-height: 70px;
 }
 #startScreen button {
   padding: 0.8rem;
@@ -91,6 +94,7 @@ body {
   color: #013220;
   cursor: pointer;
   width: 100%;
+  min-height: 70px;
 }
 #startScreen button:hover {
   background: #013220;
@@ -363,6 +367,7 @@ footer {
   #animalBtns button {
     font-size: 0.9rem;
     padding: 0.7rem;
+    min-height: 70px;
   }
   #feedback {
     font-size: 1rem;
@@ -389,6 +394,7 @@ footer {
   #animalBtns button {
     font-size: 0.95rem;
     padding: 0.75rem;
+    min-height: 80px;
   }
   .display h4 {
     font-size: 1rem;

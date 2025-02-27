@@ -81,7 +81,7 @@ function startRound() {
 
   const randomIndex = Math.floor(Math.random() * animals.length);
   currentAnimal = animals[randomIndex];
-  showRandomAnimal.innerHTML = `🫎Random Animal: ${currentAnimal.name}`;
+  showRandomAnimal.innerHTML = `🫏Animal: ${currentAnimal.name}`;
   feedback.textContent = 'Choose the correct animal:';
   roundActive = true;
 
@@ -120,34 +120,34 @@ function checkAnswer(selectedAnimalName) {
 }
 
 function Lion() {
-  checkAnswer('lion');
+  checkAnswer('Lion');
 }
 function Tiger() {
-  checkAnswer('tiger');
+  checkAnswer('Tiger');
 }
 function Elephant() {
-  checkAnswer('elephant');
+  checkAnswer('Elephant');
 }
 function Giraffe() {
-  checkAnswer('giraffe');
+  checkAnswer('Giraffe');
 }
 function Dinosaur() {
-  checkAnswer('dinosaur');
+  checkAnswer('Dinosaur');
 }
 function Monkey() {
-  checkAnswer('monkey');
+  checkAnswer('Monkey');
 }
 function Zebra() {
-  checkAnswer('zebra');
+  checkAnswer('Zebra');
 }
 function Penguin() {
-  checkAnswer('penguin');
+  checkAnswer('Penguin');
 }
 function Koala() {
-  checkAnswer('koala');
+  checkAnswer('Koala');
 }
 function Dog() {
-  checkAnswer('dog');
+  checkAnswer('Dog');
 }
 
 function endGame() {
@@ -159,7 +159,7 @@ function endGame() {
   bgSound.pause();
   bgSound.currentTime = 0;
 
-  if (score >= 6) {
+  if (score >= 7) {
     celebrateVictory();
   } else {
     feedback.textContent = `Game Over! ${playerName}, your final score is: ${score}`;
