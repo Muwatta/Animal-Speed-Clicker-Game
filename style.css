@@ -152,6 +152,7 @@ body {
   padding: 0.8rem;
   border-radius: 5px;
   margin: 0 0.5rem;
+  height: 50px;
 }
 .display #displayTimer {
   opacity: 1;
@@ -162,6 +163,7 @@ body {
   padding: 0.8rem;
   border-radius: 5px;
   margin: 0 0.5rem;
+  height: 50px;
 }
 #showRandomAnimal {
   font-size: 1.5rem;
@@ -364,7 +366,7 @@ footer {
   }
   #feedback {
     font-size: 1rem;
-    color: #333;
+    color: #c2f0c2;
   }
 }
 
