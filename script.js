@@ -1,16 +1,18 @@
 let score = 0;
-let gameTime = 60;
+let gameTime = 45;
 let currentAnimal = null;
 let roundActive = false;
 let countdownInterval;
 let feedbackTimeout;
 let playerName = '';
+let gamePaused = false;
 
 const displayScore = document.getElementById('displayScore');
 const displayTimer = document.getElementById('displayTimer');
 const showRandomAnimal = document.getElementById('showRandomAnimal');
 const feedback = document.getElementById('feedback');
 const playerGreeting = document.getElementById('playerGreeting');
+const pauseBtn = document.getElementById('pauseBtn');
 
 const animals = [
   { name: 'lion', emoji: '🦁' },
@@ -79,7 +81,7 @@ function startRound() {
 
   const randomIndex = Math.floor(Math.random() * animals.length);
   currentAnimal = animals[randomIndex];
-  showRandomAnimal.innerHTML = `🫎Random Animal: <span class="animalEmoji">${currentAnimal.emoji}</span>`;
+  showRandomAnimal.innerHTML = `🫎Random Animal: ${currentAnimal.name}`;
   feedback.textContent = 'Choose the correct animal:';
   roundActive = true;
 
@@ -94,7 +96,7 @@ function enableAnimalButtons(enable) {
 }
 
 function checkAnswer(selectedAnimalName) {
-  if (!roundActive) return;
+  if (!roundActive || gamePaused) return;
   enableAnimalButtons(false);
   roundActive = false;
 
@@ -102,7 +104,8 @@ function checkAnswer(selectedAnimalName) {
     feedback.textContent = 'Correct! ✅';
     score++;
   } else {
-    feedback.textContent = 'Incorrect! ❌';
+    feedback.textContent = 'Incorrect! ❌ (-1 point)';
+    score = Math.max(0, score - 1);
   }
   updateScoreDisplay();
 
@@ -162,7 +165,6 @@ function endGame() {
     feedback.textContent = `Game Over! ${playerName}, your final score is: ${score}`;
     showRandomAnimal.textContent = 'Game Over!';
     saveRecord(playerName, score);
-    playerGreeting.textContent = '';
   }
 }
 
@@ -187,7 +189,7 @@ function resetGame() {
   clearTimeout(feedbackTimeout);
 
   score = 0;
-  gameTime = 60;
+  gameTime = 45;
   currentAnimal = null;
   roundActive = false;
 
@@ -195,6 +197,11 @@ function resetGame() {
   updateTimerDisplay();
   feedback.textContent = '';
   showRandomAnimal.textContent = '🫎Random Animal: ';
+
+  const bgSound = document.getElementById('bgSound');
+  bgSound.currentTime = 0;
+  bgSound.play();
+  gamePaused = false;
 
   startCountdown();
   startRound();
@@ -265,9 +272,23 @@ function saveRecord(name, score) {
 function shuffleAnimalButtons() {
   const container = document.getElementById('animalBtns');
   const buttons = Array.from(container.children);
-  for (let i = buttons.length - 1; i > 0; i--) {
-    const j = Math.random() * (i + 1);
-    container.appendChild(buttons[i]);
-    buttons.splice(j, 1);
+  buttons.sort(() => Math.random() - 0.5);
+  buttons.forEach(button => container.appendChild(button));
+}
+
+function togglePause() {
+  gamePaused = !gamePaused;
+
+  if (gamePaused) {
+    clearInterval(countdownInterval);
+    document.getElementById('bgSound').pause();
+    pauseBtn.textContent = '⏸️';
+    enableAnimalButtons(false);
+  } else {
+    startCountdown();
+    document.getElementById('bgSound').play();
+    pauseBtn.textContent = 'Pause';
+    enableAnimalButtons(true);
   }
 }
+pauseBtn.addEventListener('click', togglePause);

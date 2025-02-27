@@ -15,10 +15,11 @@ body {
   padding: 10px;
 }
 
+/* Navigation */
 #mainNav {
   width: 100%;
   background: #024731;
-  padding: 10px 0;
+  padding: 5px 0;
   margin-bottom: 20px;
 }
 #mainNav ul {
@@ -26,9 +27,11 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
 }
 #mainNav ul li {
-  margin: 0 15px;
+  margin: 0 3px;
 }
 #mainNav ul li a {
   color: #c2f0c2;
@@ -39,10 +42,17 @@ body {
 #mainNav ul li a:hover {
   color: #fff;
 }
-#mainNav {
+
+/* Intro Section */
+.intro {
+  width: 100%;
+  background: #024731;
+  color: #c2f0c2;
   text-align: center;
+  padding: 20px;
 }
 
+/* Start Screen */
 #startScreen {
   background: #024731;
   padding: 2rem;
@@ -54,6 +64,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: opacity 0.5s ease;
+  margin-top: 20px;
 }
 #startScreen h2 {
   margin-bottom: 1.5rem;
@@ -79,6 +93,7 @@ body {
   width: 100%;
 }
 
+/* Game Section */
 .AnimalSpeedClickerGame {
   width: 100%;
   max-width: 600px;
@@ -88,6 +103,7 @@ body {
   text-align: center;
   position: relative;
   transition: opacity 0.5s ease;
+  margin-top: 20px;
 }
 .AnimalSpeedClickerGame header h2 {
   color: #c2f0c2;
@@ -148,7 +164,6 @@ body {
   cursor: pointer;
   flex: 1;
 }
-
 #feedback {
   font-size: 1.2rem;
   background: rgba(0, 0, 0, 0.3);
@@ -157,6 +172,7 @@ body {
   color: #c2f0c2;
 }
 
+/* Loading Overlay */
 #loadingOverlay {
   position: absolute;
   top: 0;
@@ -170,7 +186,6 @@ body {
   align-items: center;
   z-index: 10;
 }
-
 .spinner {
   width: 50px;
   height: 50px;
@@ -180,7 +195,6 @@ body {
   margin-bottom: 15px;
   animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -212,7 +226,7 @@ body {
   animation: dance 0.5s ease-in-out infinite;
 }
 
-/* Overlay Styling for Guide, About, and Leaderboard */
+/* Overlay Styles */
 .overlay {
   position: fixed;
   top: 0;
@@ -253,13 +267,11 @@ body {
   width: 100%;
   max-width: 150px;
 }
-
 #leaderboardOverlay,
 #guideOverlay,
 #aboutOverlay {
   display: none;
 }
-
 #leaderboardList {
   list-style: none;
   padding: 0;
@@ -271,22 +283,52 @@ body {
   padding: 5px 0;
   border-bottom: 1px solid #c2f0c2;
 }
+
+/* Footer */
 footer {
-  position: relative;
   background-color: #024731;
   text-align: center;
   padding: 20px;
   margin-top: 20px;
   color: #c2f0c2;
   font-size: 0.9rem;
-  bottom: 0;
-  text-align: center;
   width: 100%;
 }
-footer .p-developer {
-  margin-top: 15px;
-  color: #009f45;
+
+/* Mobile styles (max-width: 480px) */
+@media (max-width: 480px) {
+  #startScreen,
+  .AnimalSpeedClickerGame {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  #startScreen h2,
+  .AnimalSpeedClickerGame header h2 {
+    font-size: 1.5rem;
+  }
+  #mainNav ul li a {
+    font-size: 1rem;
+    padding: 5px;
+  }
+  .display h4 {
+    font-size: 0.9rem;
+  }
+  #showRandomAnimal {
+    font-size: 1.3rem;
+  }
+  #startScreen input,
+  #startScreen button,
+  .controlButtons button,
+  #animalBtns button {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+  #feedback {
+    font-size: 1rem;
+    color: #333;
+  }
 }
+
 @media (min-width: 481px) and (max-width: 768px) {
   #mainNav ul li a {
     font-size: 1rem;
@@ -315,5 +357,25 @@ footer .p-developer {
   }
   #feedback {
     font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 769px) {
+  #startScreen {
+    max-width: 600px;
+    padding: 2rem;
+  }
+  .AnimalSpeedClickerGame {
+    max-width: 800px;
+    padding: 2rem;
+  }
+  #mainNav ul {
+    justify-content: center;
+  }
+  #mainNav ul li {
+    margin: 0 50px;
+  }
+  #mainNav ul li a {
+    font-size: 1.2rem;
   }
 }
