@@ -69,11 +69,11 @@ function startCountdown() {
 }
 
 function updateScoreDisplay() {
-  displayScore.textContent = `🥅Score: ${score}`;
+  displayScore.textContent = `🥅: ${score}`;
 }
 
 function updateTimerDisplay() {
-  displayTimer.textContent = `⏲️Timer: ${gameTime}s`;
+  displayTimer.textContent = `⏲️: ${gameTime}s`;
 }
 
 function startRound() {
@@ -104,7 +104,7 @@ function checkAnswer(selectedAnimalName) {
     feedback.textContent = 'Correct! ✅';
     score++;
   } else {
-    feedback.textContent = 'Incorrect! ❌ (-1 point)';
+    feedback.textContent = 'Incorrect! ❌ -1';
     score = Math.max(0, score - 1);
   }
   updateScoreDisplay();
@@ -287,7 +287,7 @@ function togglePause() {
   } else {
     startCountdown();
     document.getElementById('bgSound').play();
-    pauseBtn.textContent = 'Pause';
+    pauseBtn.textContent = '⏸️';
     enableAnimalButtons(true);
   }
 }
